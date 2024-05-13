@@ -6,14 +6,6 @@ import ButtonLayout from '../../../../components/ButtonLayout/ButtonLayout';
 const MakeAppointment = () => {
     return (
 
-        // z-index: 0;
-        // display: flex;
-        // align-items: center;
-        // justify-content: center;
-        // max-width: 80rem/* 1280px */;
-        // gap: 1rem/* 16px */;
-        // padding: 1rem/* 16px */;
-
         <section
             className='my-32'
             style={
@@ -23,7 +15,7 @@ const MakeAppointment = () => {
                 }
             }>
             <div className="hero">
-                <div className="flex flex-col lg:flex-row z-0 items-center justify-center md:gap-4 gap-0 pt-4 px-4 pb-0 text-white">
+                <div className="flex flex-col lg:flex-row z-0 items-center justify-center max-w-7xl md:gap-4 gap-0 pt-4 px-4 pb-0 text-white">
                     <img src={doctor} alt='' className="-mt-36 hidden md:block lg:w-1/2 rounded-lg" />
                     <div>
                         <p className=' text-secondary font-semibold'>APPOINTMENT</p>
