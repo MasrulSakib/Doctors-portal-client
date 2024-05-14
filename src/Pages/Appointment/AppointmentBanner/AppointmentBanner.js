@@ -16,10 +16,11 @@ const AppointmentBanner = ({ selectedDate, setSelectedDate }) => {
                 }
             }>
             <div className="hero">
-                <div className="z-0 flex items-center justify-center md:max-w-7xl max-w-sm md:p-4 p-2 flex-col lg:flex-row-reverse">
-                    <img className="lg:w-1/2 rounded-lg shadow-2xl ms-6" src={banner} alt='' />
+                <div className="z-0 flex items-center justify-center md:max-w-7xl max-w-sm p-4 flex-col lg:flex-row-reverse">
+                    <img className="lg:w-1/2 w-auto rounded-lg shadow-2xl md:ms-6" src={banner} alt='' />
                     <div>
                         <DayPicker
+                            className='mx-0 px-0 max-w-xs'
                             mode='single'
                             selected={selectedDate}
                             onSelect={setSelectedDate}
