@@ -1,40 +1,45 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
-import toast from 'react-hot-toast';
 
-const Login = () => {
+const SignUp = () => {
+
+    const { createUser, updateUser } = useContext(AuthContext)
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const { userSignIn } = useContext(AuthContext)
-    const [error, setError] = useState('');
-    const navigate = useNavigate();
-    const location = useLocation();
-    const from = location.state?.from?.pathname || '/';
 
-    const handleLogin = event => {
-        console.log(event)
-        setError('')
-        userSignIn(event.email, event.password)
+    const handleSignUp = (data) => {
+        console.log(data)
+        createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
                 console.log(user)
-                navigate(from, { replace: true })
-                toast.success('User Login Successfull')
+                const userProfile = {
+                    displayName: data.name,
+                }
+                updateUser(userProfile)
+                    .then(() => { })
+                    .catch(error => console.error(error))
             })
-            .catch(error => {
-                console.error(error)
-                setError(error.message)
-            })
+            .catch(error => console.error(error));
     }
+
 
     return (
         <section className='h-[800px] flex justify-center items-center'>
 
             <div className='p-7 w-96 shadow-2xl rounded-xl'>
-                <h2 className='text-2xl text-center font-semibold'>LOGIN</h2>
-                <form onSubmit={handleSubmit(handleLogin)} className=''>
+                <h2 className='text-2xl text-center font-semibold'>REGISTER</h2>
+                <form onSubmit={handleSubmit(handleSignUp)}>
 
+                    <label className="form-control w-full">
+                        <div className="label">
+                            <span className="label-text">Name</span>
+                        </div>
+                        <input {...register("name", { required: "Username is required" })}
+                            type="text" placeholder="Your Name"
+                            className="input input-bordered w-full max-w-xs" />
+                        {errors.name && <p className='text-error' role="alert">{errors.name.message}</p>}
+                    </label>
                     <label className="form-control w-full">
                         <div className="label">
                             <span className="label-text">Email</span>
@@ -51,26 +56,19 @@ const Login = () => {
                         <input {...register("password", {
                             required: "Password is required",
                             minLength: { value: 6, message: 'Password must be 6 charecters or longer' },
-
+                            pattern: { value: /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{6,}$/, message: 'Password must be strong' }
                         })}
                             type="password" placeholder="Your Password"
                             className="input input-bordered w-full max-w-xs" />
                         {errors.password && <p className='text-error' role="alert">{errors.password.message}</p>}
                     </label>
 
-                    <button className='btn btn-accent w-full my-10' type='submit'>LOGIN</button>
-                    <p className='text-red-600 text-center'>{error &&
-                        <span > {error}</span>
-                    }</p>
-                    <p className='text-center'>New to Doctors Portal? <Link to='/register' className='text-secondary font-semibold'>Create New Account</Link></p>
-
-
+                    <p></p>
+                    <button className='btn btn-accent w-full my-10' type='submit'>SIGN UP</button>
                 </form>
-                <div className="divider divider-accent mb-10">OR</div>
-                <button className='w-full btn btn-outline btn-primary'>CONTINUE WITH GOOGLE</button>
             </div>
         </section>
     );
 };
 
-export default Login;
+export default SignUp;
