@@ -1,11 +1,19 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../Context/AuthProvider';
+import { useNavigate } from 'react-router-dom';
+import useToken from '../../Hooks/useToken';
 
 const SignUp = () => {
 
     const { createUser, updateUser } = useContext(AuthContext)
     const { register, formState: { errors }, handleSubmit } = useForm();
+    const navigate = useNavigate();
+    const [userCreatedEmail, setUserCreatedEmail] = useState('')
+    const [token] = useToken(userCreatedEmail);
+    if (token) {
+        navigate('/');
+    }
 
     const handleSignUp = (data) => {
         console.log(data)
@@ -17,11 +25,32 @@ const SignUp = () => {
                     displayName: data.name,
                 }
                 updateUser(userProfile)
-                    .then(() => { })
+                    .then(() => {
+                        saveUsers(data.name, data.email)
+                    })
                     .catch(error => console.error(error))
             })
             .catch(error => console.error(error));
+
     }
+    const saveUsers = (name, email) => {
+        const user = { name, email };
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify(user),
+        })
+
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setUserCreatedEmail(email)
+            })
+
+    }
+
 
 
     return (

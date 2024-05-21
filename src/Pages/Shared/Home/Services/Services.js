@@ -16,13 +16,13 @@ const Services = () => {
             icon: fluoride
         },
         {
-            id: 1,
+            id: 2,
             title: 'Cavity Filling',
             description: 'Lorem Ipsum is simply dummy printing and typesetting indust Ipsum has been the',
             icon: cavity
         },
         {
-            id: 1,
+            id: 3,
             title: 'Teeth Whitening',
             description: 'Lorem Ipsum is simply dummy printing and typesetting indust Ipsum has been the',
             icon: whitening
@@ -35,7 +35,7 @@ const Services = () => {
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
                 {
                     dentalServices.map(service => <Service
-                        key={service.key}
+                        key={service.id}
                         dentalService={service}
                     ></Service>)
                 }
