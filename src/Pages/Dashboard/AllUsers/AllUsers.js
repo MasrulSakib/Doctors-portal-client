@@ -14,7 +14,7 @@ const AllUsers = () => {
     })
 
     const handleAdmin = (id) => {
-        fetch(`http://localhost:5000/users/admin/${id}`, {
+        fetch(`http://localhost:5000/users/admin/id/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -52,7 +52,7 @@ const AllUsers = () => {
                                 <tr key={user._id}>
                                     <th>{i + 1}</th>
                                     <td>{user.name}</td>
-                                    <td>{user.email}</td>
+                                    <td>{user?.email}</td>
                                     <td>{!user?.role && <button onClick={() => handleAdmin(user._id)} className='btn btn-xs btn-outline btn-secondary'>Make Admin</button>}</td>
                                     <td><button className='btn btn-xs btn-accent btn-outline'>Delete</button></td>
                                 </tr>

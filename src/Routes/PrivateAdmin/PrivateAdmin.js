@@ -5,7 +5,7 @@ import useAdmin from '../../Hooks/useAdmin';
 
 const PrivateAdmin = ({ children }) => {
     const { loader, user } = useContext(AuthContext)
-    const [isAdmin, adminLoader] = useAdmin(user.email)
+    const [isAdmin, adminLoader] = useAdmin(user?.email)
     const location = useLocation();
 
     if (loader || adminLoader) {
