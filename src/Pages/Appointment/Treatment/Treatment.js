@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 import { format } from 'date-fns';
 
 const Treatment = ({ treatment, setTreatment, formattedDate, refetch }) => {
-    const { name: treatmentName, slots, } = treatment;
+    const { name: treatmentName, slots, price } = treatment;
     const { user } = useContext(AuthContext)
     const date = format(formattedDate, 'PP')
 
@@ -17,6 +17,7 @@ const Treatment = ({ treatment, setTreatment, formattedDate, refetch }) => {
         const phone = form.phone.value;
         const slot = form.slot.value;
         const selectedTreatment = treatmentName;
+
         console.log(username, phone, email, slot);
 
         const patientData = {
@@ -25,11 +26,12 @@ const Treatment = ({ treatment, setTreatment, formattedDate, refetch }) => {
             email,
             phone,
             slot,
-            selectedTreatment
+            selectedTreatment,
+            price
         }
         console.log(patientData)
 
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://doctors-portal-server-lemon.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

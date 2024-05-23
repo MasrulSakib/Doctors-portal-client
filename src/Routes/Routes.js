@@ -11,10 +11,13 @@ import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import PrivateAdmin from "./PrivateAdmin/PrivateAdmin";
 import AddDoctor from "../Pages/Layout/AddDoctor/AddDoctor";
 import ManageDoctor from "../Pages/Layout/ManageDoctor/ManageDoctor";
+import Payment from "../Pages/Layout/ManageDoctor/Payment";
+import DisplayError from "../Pages/Shared/DisplayError/DisplayError";
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        errorElement: <DisplayError></DisplayError>,
         children: [
             {
                 path: '/',
@@ -41,6 +44,7 @@ const router = createBrowserRouter([
     {
         path: '/dashboard',
         element: <PrivateRoutes><DashboardLayout></DashboardLayout></PrivateRoutes>,
+        errorElement: <DisplayError></DisplayError>,
         children: [
             {
                 path: '/dashboard',
@@ -57,6 +61,11 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/managedoctor',
                 element: <PrivateAdmin><ManageDoctor></ManageDoctor></PrivateAdmin>
+            },
+            {
+                path: '/dashboard/bookings/:id',
+                element: <PrivateAdmin><Payment></Payment></PrivateAdmin>,
+                loader: ({ params }) => fetch(`https://doctors-portal-server-lemon.vercel.app/bookings/${params.id}`)
             },
         ]
     }

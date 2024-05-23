@@ -10,7 +10,7 @@ const AppointmentServices = ({ formattedDate }) => {
     const { data: servicesData = [], refetch, isLoading } = useQuery({
         queryKey: ['servicesData', date],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/dentalServices?date=${date}`)
+            const res = await fetch(`https://doctors-portal-server-lemon.vercel.app/dentalServices?date=${date}`)
             const data = await res.json()
             return data;
         }

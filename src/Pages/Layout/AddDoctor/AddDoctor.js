@@ -12,7 +12,7 @@ const AddDoctor = () => {
     const { data: specialities, isLoading } = useQuery({
         queryKey: ['speciality'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/specially')
+            const res = await fetch('https://doctors-portal-server-lemon.vercel.app/specially')
             const data = await res.json()
             return data;
         }
@@ -42,7 +42,7 @@ const AddDoctor = () => {
 
                     }
 
-                    fetch(`http://localhost:5000/doctors`, {
+                    fetch(`https://doctors-portal-server-lemon.vercel.app/doctors`, {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

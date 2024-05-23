@@ -2,7 +2,7 @@ import React from 'react';
 
 const AppointmentData = ({ service, setTreatment }) => {
 
-    const { name, slots } = service;
+    const { name, slots, price } = service;
     return (
         <section>
             <div className="card shadow-xl mx-auto">
@@ -10,8 +10,8 @@ const AppointmentData = ({ service, setTreatment }) => {
                     <h2 className="card-title text-secondary text-2xl font-semibold">{name}</h2>
                     <p>{slots.length > 0 ? `${slots[0]}` : 'No time slots available right now.'}</p>
                     <p>{slots.length > 0 ? `${slots.length} spaces available` : 'No spaces available'} </p>
+                    <p>Price: ${price}</p>
                     <div className="card-actions justify-center">
-
                         <label
                             disabled={slots.length === 0}
                             htmlFor="treatmentModal"
