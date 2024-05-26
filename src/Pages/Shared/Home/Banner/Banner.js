@@ -10,7 +10,10 @@ const Banner = () => {
             style={
                 {
                     background: `url(${backgroundImg})`,
-                    backgroundSize: 'contain'
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+
                 }
             }>
             <div className="hero mt-20 mb-10">

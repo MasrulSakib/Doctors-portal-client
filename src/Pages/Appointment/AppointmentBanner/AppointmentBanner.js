@@ -11,7 +11,9 @@ const AppointmentBanner = ({ formattedDate, setSelectedDate }) => {
         <section
             style={{
                 background: `url(${backgroundImg})`,
-                backgroundSize: 'contain'
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
             }}>
             <div className="hero">
                 <div className="z-0 flex items-center justify-center md:max-w-7xl max-w-sm p-4 flex-col lg:flex-row-reverse">

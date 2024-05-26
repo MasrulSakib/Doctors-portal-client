@@ -11,7 +11,6 @@ const ConfirmationModal = ({ title, massege, closeModal, successDelete, modalDat
                     <div className="modal-action">
                         <label onClick={() => successDelete(modalData)} htmlFor="remove-Doctor" className="btn btn-accent">Confirm</label>
                         <button onClick={closeModal} className='btn btn-accent btn-outline'>Cancel</button>
-
                     </div>
                 </div>
             </div>

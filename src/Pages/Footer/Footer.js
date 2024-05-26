@@ -7,7 +7,9 @@ const Footer = () => {
         <section style={
             {
                 background: `url(${footer})`,
-                backgroundSize: 'contain'
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
             }
         }>
             <div>
