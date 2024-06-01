@@ -1,6 +1,6 @@
 # Doctors Portal
 
-Visit our website: [Doctors Portal](https://doctors-portal-2bd8f.firebaseapp.com/)
+Visit my website: [Doctors Portal](https://doctors-portal-2bd8f.firebaseapp.com/)
 
 Doctors Portal is a comprehensive dental services website that connects patients with dental professionals. The platform provides functionalities for both admin users and patients, ensuring a smooth and efficient user experience. The website is fully mobile responsive, allowing users to access services seamlessly from any device.
 
