@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import AppointmentData from '../AppointmentData/AppointmentData';
 import Treatment from '../Treatment/Treatment';
 import { useQuery } from '@tanstack/react-query';
+import PrivateRoutes from '../../../Routes/PrivateRoutes/PrivateRoutes';
 
 const AppointmentServices = ({ formattedDate }) => {
     const [treatment, setTreatment] = useState(null)
@@ -37,12 +38,14 @@ const AppointmentServices = ({ formattedDate }) => {
             </div>
             {
                 treatment &&
-                <Treatment
-                    treatment={treatment}
-                    setTreatment={setTreatment}
-                    formattedDate={formattedDate}
-                    refetch={refetch}
-                ></Treatment>
+                <PrivateRoutes>
+                    <Treatment
+                        treatment={treatment}
+                        setTreatment={setTreatment}
+                        formattedDate={formattedDate}
+                        refetch={refetch}
+                    ></Treatment>
+                </PrivateRoutes>
             }
         </section>
     );

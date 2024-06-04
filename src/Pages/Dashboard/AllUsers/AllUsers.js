@@ -30,6 +30,24 @@ const AllUsers = () => {
 
     }
 
+    const handleDelete = (user) => {
+        fetch(`https://doctors-portal-server-lemon.vercel.app/users/${user?._id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`,
+            }
+
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.deletedCount > 0) {
+                    refetch();
+                    toast.success(`User is removed successfully`);
+                }
+            })
+    }
+
     return (
         <div>
             <h2 className="text-3xl font-semibold">All Users</h2>
@@ -42,7 +60,7 @@ const AllUsers = () => {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Admin Panal</th>
-                            <th>Action</th>
+                            {/* <th>Action</th> */}
                         </tr>
                     </thead>
                     <tbody>
@@ -54,7 +72,7 @@ const AllUsers = () => {
                                     <td>{user.name}</td>
                                     <td>{user?.email}</td>
                                     <td>{!user?.role && <button onClick={() => handleAdmin(user._id)} className='btn btn-xs btn-outline btn-secondary whitespace-nowrap'>Make Admin</button>}</td>
-                                    <td><button className='btn btn-xs btn-accent btn-outline'>Delete</button></td>
+                                    {/* <td><button onClick={() => handleDelete(user)} className='btn btn-xs btn-accent btn-outline'>Delete</button></td> */}
                                 </tr>
                             )
                         }
